@@ -26,7 +26,7 @@ export type CardUsecase = {
 
 export function CardUsecase(ports: CardUsecaseDependencies): CardUsecase {
   return {
-    dealCards: (): Card[] => {
+    drawCards: (): Card[] => {
       return [
         createCard('藁の家', '藁で作られた家', StrawHouse),
         createCard('木の家', '木で作られた家', WoodenHouse),

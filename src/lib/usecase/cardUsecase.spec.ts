@@ -16,13 +16,13 @@ describe('Card Usecase test', () => {
   describe('getAll', () => {
     test('4枚のカードを取得する', () => {
       const cardUsecase = CardUsecase({} as CardUsecaseDependencies)
-      const cards: Card[] = cardUsecase.dealCards()
+      const cards: Card[] = cardUsecase.drawCards()
       expect(cards.length).toBe(4)
     })
     test('4枚のカードは全種類取得する', () => {
       const cardGateway = {} as CardPort
       const cardUsecase = CardUsecase({} as CardUsecaseDependencies)
-      const cards: Card[] = cardUsecase.dealCards()
+      const cards: Card[] = cardUsecase.drawCards()
       expect(cards).toEqual([
         createCard('藁の家', '藁で作られた家', StrawHouse),
         createCard('木の家', '木で作られた家', WoodenHouse),
