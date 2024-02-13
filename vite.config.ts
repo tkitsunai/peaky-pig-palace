@@ -10,11 +10,11 @@ export default defineConfig({
     emptyOutDir: true,
     rollupOptions: {
       input: {
-        '': resolve(__dirname, 'src/index.html'),
+        '': resolve(__dirname, 'src/index.html')
       },
       output: {
-        entryFileNames: `assets/[name]/bundle.js`,
-      },
-    },
-  },
-});
+        entryFileNames: `dist/[name]/bundle.js`
+      }
+    }
+  }
+})

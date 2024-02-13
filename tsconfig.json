@@ -12,17 +12,13 @@
     "experimentalDecorators": true,
     "emitDecoratorMetadata": true,
     "removeComments": true,
-    "outDir": "./dist",
     "rootDir": "./src",
     "moduleResolution": "Bundler",
     "jsx": "react-jsx",
     "noEmit": true,
-    "allowImportingTsExtensions": true,
+    "allowImportingTsExtensions": true
   },
   "include": ["src/**/*"],
-  "exclude": [
-    "dist",
-    "node_module"
-  ],
+  "exclude": ["dist", "node_module"],
   "compileOnSave": false
 }

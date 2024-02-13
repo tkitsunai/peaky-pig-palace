@@ -1,0 +1,9 @@
+{
+  "jest.enable": false,
+  "jest.runMode": "on-save",
+  "editor.formatOnSave": true,
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": "explicit"
+  }
+}
