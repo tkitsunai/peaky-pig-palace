@@ -4,15 +4,9 @@ import {
   Wolf,
   WoodenHouse
 } from '../domain/playableCard'
-import { Card, createCard, FieldCards } from '../entity/card'
-
-export interface FieldPort {
-  FindPlayedCard: () => Card[]
-}
-
-export interface CardPort {
-  getAll: () => Card[]
-}
+import { Card, FieldCards } from '../entity/card'
+import { CardPort } from '../port/cardPort'
+import { FieldPort } from '../port/fieldPort'
 
 export type CardUsecaseDependencies = {
   cardPort: CardPort
@@ -28,10 +22,26 @@ export function CardUsecase(ports: CardUsecaseDependencies): CardUsecase {
   return {
     drawCards: (): Card[] => {
       return [
-        createCard('藁の家', '藁で作られた家', StrawHouse),
-        createCard('木の家', '木で作られた家', WoodenHouse),
-        createCard('レンガの家', 'レンガで作られた家', BrickHouse),
-        createCard('オオカミ', '悪いオオカミ', Wolf)
+        {
+          name: '藁の家',
+          description: '藁で作られた家',
+          cardKind: StrawHouse
+        },
+        {
+          name: '木の家',
+          description: '木で作られた家',
+          cardKind: WoodenHouse
+        },
+        {
+          name: 'レンガの家',
+          description: 'レンガで作られた家',
+          cardKind: BrickHouse
+        },
+        {
+          name: 'オオカミ',
+          description: '悪いオオカミ',
+          cardKind: Wolf
+        }
       ]
     },
     playHiddenCard: (card: Card): FieldCards => {

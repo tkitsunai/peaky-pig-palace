@@ -16,7 +16,7 @@ export function ProgressUsecase(usecases: Options) {
       const players = usecases.PlayersUsecase.getPlayers()
       players.forEach((player) => {
         usecases.PlayersUsecase.setHandCards(
-          player,
+          player.id,
           usecases.CardUsecase.drawCards()
         )
       })

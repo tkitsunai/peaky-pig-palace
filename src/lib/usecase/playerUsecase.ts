@@ -1,11 +1,21 @@
-import { Player } from '../domain/player'
+import { Player, PlayerId } from '../domain/player'
 import { Card } from '../entity/card'
+import { PlayerPort } from '../port/playerPort'
 
 export type PlayerUsecase = {
-  setHandCards(player: Player, arg1: Card[]): void
+  setHandCards(playerId: PlayerId, arg1: Card[]): void
   getPlayers: () => Player[]
 }
 
-export function PlayerUsecase(): PlayerUsecase {
-  return {} as PlayerUsecase
+export type playerUsecaseOptions = {
+  playerPort: PlayerPort
+}
+
+export function PlayerUsecase(options: playerUsecaseOptions): PlayerUsecase {
+  return {
+    setHandCards: (playerId: PlayerId, cards: Card[]): void => {
+      options.playerPort.setPlayerHands(playerId, cards)
+    },
+    getPlayers: () => []
+  }
 }

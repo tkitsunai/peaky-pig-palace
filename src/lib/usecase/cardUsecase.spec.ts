@@ -1,16 +1,13 @@
-import { Card, createCard } from '../entity/card'
-import {
-  CardUsecase,
-  CardPort,
-  CardUsecaseDependencies,
-  FieldPort
-} from './cardUsecase'
+import { Card } from '../entity/card'
+import { CardUsecase, CardUsecaseDependencies } from './cardUsecase'
 import {
   BrickHouse,
   StrawHouse,
   WoodenHouse,
   Wolf
 } from '../domain/playableCard'
+import { CardPort } from '../port/cardPort'
+import { FieldPort } from '../port/fieldPort'
 
 describe('Card Usecase test', () => {
   describe('getAll', () => {
@@ -24,23 +21,46 @@ describe('Card Usecase test', () => {
       const cardUsecase = CardUsecase({} as CardUsecaseDependencies)
       const cards: Card[] = cardUsecase.drawCards()
       expect(cards).toEqual([
-        createCard('藁の家', '藁で作られた家', StrawHouse),
-        createCard('木の家', '木で作られた家', WoodenHouse),
-        createCard('レンガの家', 'レンガで作られた家', BrickHouse),
-        createCard('オオカミ', '悪いオオカミ', Wolf)
+        {
+          name: '藁の家',
+          description: '藁で作られた家',
+          cardKind: StrawHouse
+        },
+        {
+          name: '木の家',
+          description: '木で作られた家',
+          cardKind: WoodenHouse
+        },
+        {
+          name: 'レンガの家',
+          description: 'レンガで作られた家',
+          cardKind: BrickHouse
+        },
+        {
+          name: 'オオカミ',
+          description: '悪いオオカミ',
+          cardKind: Wolf
+        }
       ])
     })
   })
 
   describe('playHiddenCard', () => {
     test('カードをプレイするとすでにフィールドとしてプレイされたカードにプレイしたカードが追加された結果を得られる', () => {
-      const cardGateway = {} as CardPort
       const fieldGateway = {} as FieldPort
       const cardUsecase = CardUsecase({
         fieldPort: fieldGateway
       } as CardUsecaseDependencies)
-      const card = createCard('藁の家', '藁で作られた家', StrawHouse)
-      const woodenCard = createCard('木の家', '木で作られた家', WoodenHouse)
+      const card: Card = {
+        name: '藁の家',
+        description: '藁で作られた家',
+        cardKind: StrawHouse
+      }
+      const woodenCard: Card = {
+        name: '木の家',
+        description: '木で作られた家',
+        cardKind: WoodenHouse
+      }
       const mockfn = jest.fn(() => [card])
       fieldGateway.FindPlayedCard = mockfn
       const actual = cardUsecase.playHiddenCard(woodenCard)
