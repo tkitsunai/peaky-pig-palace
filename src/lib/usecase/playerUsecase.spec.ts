@@ -6,7 +6,7 @@ describe('Player Usecase test', () => {
   test('setHandCards', () => {
     const player: Player = { id: 'id1', name: 'name' }
     const gatewayMockFn = {
-      setPlayerHands: jest.fn()
+      setPlayerHands: vi.fn()
     }
     const playerGateway: PlayerPort = {
       setPlayerHands: gatewayMockFn.setPlayerHands

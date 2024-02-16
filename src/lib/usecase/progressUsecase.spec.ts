@@ -13,9 +13,9 @@ describe('progressUsecase', () => {
         name: 'player2'
       }
     ]
-    const getPlayersFn = jest.fn(() => players)
-    const setHandCardsFn = jest.fn()
-    const drawCardsFn = jest.fn()
+    const getPlayersFn = vi.fn(() => players)
+    const setHandCardsFn = vi.fn()
+    const drawCardsFn = vi.fn()
     const progressUsecase = ProgressUsecase({
       CardUsecase: {
         drawCards: drawCardsFn,

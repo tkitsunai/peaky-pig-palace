@@ -61,7 +61,7 @@ describe('Card Usecase test', () => {
         description: '木で作られた家',
         cardKind: WoodenHouse
       }
-      const mockfn = jest.fn(() => [card])
+      const mockfn = vi.fn(() => [card])
       fieldGateway.FindPlayedCard = mockfn
       const actual = cardUsecase.playHiddenCard(woodenCard)
       expect(mockfn).toHaveBeenCalled()
